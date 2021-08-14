@@ -49,6 +49,7 @@ def main():
     dp.add_handler(CommandHandler('grapebook', grapebook))
     dp.add_handler(CommandHandler('quote', quote))
     dp.add_handler(CommandHandler('addquote', update_quote))
+    dp.add_handler(CommandHandler('code', sourcecode))
 
     dp.add_handler(MessageHandler(Filters.status_update.new_chat_members, new_member))
 
