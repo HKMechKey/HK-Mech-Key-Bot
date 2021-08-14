@@ -108,7 +108,7 @@ def get_today_GB(update, context):
 
     M = pickle.load(open("data/GBmap.p", "rb"))
 
-    res = '由今天計起，未來' + str(val) + '日內終結的鍵帽團購有：\n'    
+    res = '由今天計起，未來' + str(val) + '日內終結的鍵帽團購有：\n'
 
     for date in date_list:
         if date in M:
