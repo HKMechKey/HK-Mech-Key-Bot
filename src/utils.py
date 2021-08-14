@@ -21,7 +21,7 @@ def is_correct_group(update, context):
     return chat_id == constant.group_chat_id or chat_id == constant.test_chat_id
 
 
-def is_within_CD():
+def can_use_command():
     now = datetime.now()
 
     if constant.current_time is None:
@@ -39,22 +39,22 @@ def is_within_CD():
 
 
 def send_text(update, context, input_text):
-    if is_within_CD():
+    if can_use_command():
         context.bot.sendMessage(chat_id=update.message.chat_id, text=input_text)
 
 
 def send_image(update, context, link):
-    if is_within_CD():
+    if can_use_command():
         context.bot.sendPhoto(chat_id=update.message.chat_id, photo=link)
 
 
 def send_voice(update, context, file_dir):
-    if is_within_CD():
+    if can_use_command():
         context.bot.sendVoice(chat_id=update.message.chat_id, voice=open(file_dir, 'rb'))
 
 
 def send_animation(update, context, file_dir):
-    if is_within_CD():
+    if can_use_command():
         context.bot.sendAnimation(chat_id=update.message.chat_id, animation=open(file_dir, 'rb'))
 
 
@@ -120,7 +120,7 @@ def get_today_GB(update, context):
 
 
 def GB_reminder(update, context):
-    if is_within_CD():
+    if can_use_command():
         get_today_GB(update, context)
 
 
