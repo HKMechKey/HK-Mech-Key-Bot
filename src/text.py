@@ -99,4 +99,4 @@ def grapebook(update, context):
     send_text(update, context, '提子天書，aka 香港鍵谷寶典：\n' + 'https://drive.google.com/drive/folders/1nNmqXb_wfQDiqq6TlErVkXMkp8oUnD8K')
 
 def sourcecode(update, context):
-    send_text(update, context, '我啲Code喺曬度：\nhttps://github.com/toothskyfansclub/HK-Mech-Key-Bot.git')
+    send_text(update, context, '我啲Code喺曬度：\nhttps://github.com/HKMechKey/HK-Mech-Key-Bot.git')
