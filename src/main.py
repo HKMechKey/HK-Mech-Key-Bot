@@ -1,7 +1,5 @@
-from telegram.ext import Filters, Updater, CommandHandler, MessageHandler, InlineQueryHandler
+from telegram.ext import Filters, Updater, CommandHandler, MessageHandler
 from decouple import config
-import requests
-import re
 
 from utils import *
 from media import *

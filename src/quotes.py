@@ -1,7 +1,4 @@
-from telegram.ext import Filters, Updater, CommandHandler, MessageHandler, InlineQueryHandler
 from secrets import randbelow
-import requests
-import re
 
 from utils import *
 import constant

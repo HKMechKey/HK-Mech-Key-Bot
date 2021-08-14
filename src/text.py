@@ -1,8 +1,3 @@
-from telegram.ext import Filters, Updater, CommandHandler, MessageHandler, InlineQueryHandler
-from telegram import ParseMode
-import requests
-import re
-
 from utils import *
 import constant
 

@@ -1,7 +1,4 @@
-from telegram.ext import Filters, Updater, CommandHandler, MessageHandler, InlineQueryHandler
 from datetime import datetime, timedelta
-import requests
-import re
 import pickle
 from functools import reduce
 
