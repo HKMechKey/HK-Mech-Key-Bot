@@ -46,10 +46,10 @@ def local(update, context):
     send_text(
         update,
         context,
-        '本土四寶：四個由香港人設計的客製化鍵盤。玩家可以於以下連結留意最新消息。\n\n' +
+        '香港近年盛產Custom Keyboard作者，本谷有幸收納當中四位。玩家可以於以下連結留意作者最新消息：\n\n' +
         '1.\n- AKI-S | 65% | Top Mount\n- 作者：Jeff（Thic Thock）\n' + '- 資訊發佈：https://t.me/hj2qnews\n' +
         '- Typing Demo：https://youtu.be/NZ82MLR4Gok\n\n' +
-        '2.\n- Frusta Fundemental | 65% | 撚知咩\n- 作者：目空（Picolab）\n' + '- 資訊發佈：https://t.me/joinchat/RzLPs5N8GaEQ_uN2\n' +
+        '2.\n- Frusta Fundemental | 65% | Multi Mount\n- 作者：目空（Picolab）\n' + '- 資訊發佈：https://t.me/joinchat/RzLPs5N8GaEQ_uN2\n' +
         '- Typing Demo：https://youtu.be/BLGTq045X0g\n\n' +
         '3.\n- Harbour | 65% | Gasket Mount\n- 作者：牙仲（kibou）\n' + '- 資訊發佈：https://t.me/kibouhaba\n\n' +
         '4.\n- Fuyu | 75% | Gasket Mount\n- Lamy | TKL | Top Mount\n- 作者：腐乳\n' + '- 資訊發佈：https://t.me/joinchat/3mFIsiq1pCk0ZDI9'
