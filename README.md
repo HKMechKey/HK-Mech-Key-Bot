@@ -1,6 +1,6 @@
 # DISCLAIMER
 
-This bot is solely made for the benefit Hong Kong Mechanical Keyboard Telegram Group. 
+This bot is solely made for the benefit of Hong Kong Mechanical Keyboard Telegram Group. 
 
 # HOW TO USE
 
