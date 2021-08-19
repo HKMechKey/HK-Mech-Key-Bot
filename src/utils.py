@@ -2,6 +2,9 @@ from datetime import datetime, timedelta
 import pickle
 from functools import reduce
 
+from pymongo import MongoClient
+from decouple import config
+
 import constant
 
 
@@ -95,76 +98,6 @@ def get_time(month=False, value=7):
         return arr
 
     return None
-
-
-def get_today_GB(update, context):
-    args =context.args
-    val = 7 if len(args) == 0 else int(args[0])
-
-    date_list = get_time(month=True, value=val)
-
-    M = pickle.load(open("data/GBmap.p", "rb"))
-
-    res = '由今天計起，未來' + str(val) + '日內終結的鍵帽團購有：\n'
-
-    for date in date_list:
-        if date in M:
-            res += ('\n' + date + '\n')
-            for GB in M[date]:
-                res += ('- ' + GB + '\n')
-
-    send_text(update, context, res + '\n完\n\n*基於資訊網可信性成疑，以及時區問題，Bot不確保100%準確，玩家請自行Double Check')
-
-
-def GB_reminder(update, context):
-    get_today_GB(update, context)
-
-
-def add_GB_map(update, context):
-    if update.message.from_user.username == 'mekakibodo':
-        args =context.args
-
-        if len(args) < 3:
-            context.bot.sendMessage(
-                chat_id=update.message.chat_id,
-                text='[ERR] args error'
-            )
-        else:
-            chat_id = update.message.chat_id
-            mode = args[0]
-            date = args[1]
-            name = ' '.join(args[2:])
-
-            res = pickle.load(open("data/GBmap.p", "rb"))
-
-            if mode == 'list':
-                context.bot.sendMessage(
-                    chat_id=chat_id,
-                    text='[ERR] Non existing entry' if date not in res else '\n'.join(res[date])
-                )
-            else:
-                if date not in res and mode == 'add':
-                    res[date] = [name]
-                elif name not in res[date] and mode == 'add':
-                    res[date].append(name)
-                elif date in res and name in res[date] and mode == 'del':
-                    res[date].remove(name)
-                    if len(res[date]) == 0:
-                        res.pop(date, None)
-                else:
-                    context.bot.sendMessage(
-                        chat_id=chat_id,
-                        text='[ERR] add map error'
-                    )
-
-                print(res)
-
-                pickle.dump(res, open("data/GBmap.p", "wb"))
-
-                context.bot.sendMessage(
-                    chat_id=chat_id,
-                    text='DONE'
-                )
 
 
 def get_current_list(update, context):

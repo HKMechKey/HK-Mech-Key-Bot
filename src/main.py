@@ -5,6 +5,7 @@ from utils import *
 from media import *
 from text import *
 from quotes import *
+from gb import *
 
 
 def main():
@@ -35,8 +36,7 @@ def main():
     dp.add_handler(CommandHandler('fuyu', fuyu))
     dp.add_handler(CommandHandler('on9son', on9son))
     dp.add_handler(CommandHandler('brush', brush))
-    dp.add_handler(CommandHandler('gbreminder', GB_reminder))
-    dp.add_handler(CommandHandler('wll', add_GB_map))
+    dp.add_handler(CommandHandler('gbreminder', get_keycap_GB))
     dp.add_handler(CommandHandler('holunangry', mad))
     dp.add_handler(CommandHandler('roadmap', roadmap))
     dp.add_handler(CommandHandler('addbuyitem', add_purchase_item))
