@@ -66,7 +66,7 @@ def studio(update, context):
         context,
         'HJ2Q Studio (Thic Thock X Bokkey) 現已開放！\n\n' +
         '地址：新界火炭華樂工業中心E座12樓4室\n' +
-        '開放日子：14/8, 20/8, 21/8, 27/8, 28/8\n' +
+        '開放日子：21/8, 27/8, 28/8\n' +
         '開放時間：13:00 - 19:00\n\n' +
         '交流會：28/8\n' +
         '展示鍵盤：\n' + '- Geonworks Frog TKL\n' + '- GOK 7V\n' + '- AKI-S\n\n' +
