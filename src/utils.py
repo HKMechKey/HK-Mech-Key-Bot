@@ -56,15 +56,6 @@ def send_animation(update, context, file_dir):
         context.bot.sendAnimation(chat_id=update.message.chat_id, animation=open(file_dir, 'rb'))
 
 
-def check_status(update, context):
-    res = constant.awake or update.message.from_user.username == 'mekakibodo'
-
-    if not res:
-        send_text(update, context, '未係weekend，冇得玩quote呀')
-
-    return res
-
-
 def update_header(CV, header):
     new_header = header + ' (' + get_time() + ' ver.)\n'
     index = CV.find('ver.)')
