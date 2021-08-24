@@ -1,8 +1,6 @@
 from datetime import datetime, timedelta
-import pickle
 from functools import reduce
 
-from pymongo import MongoClient
 from decouple import config
 
 import constant
@@ -76,6 +74,18 @@ def update_header(CV, header):
 def get_quote():
     db = open('data/quotes.txt', 'r')
     return db.read().split('\n')
+
+
+def get_gb():
+    db = open('data/gb.txt', 'r')
+    gb_list = db.read().split('\n')
+    gb_dict = {}
+    
+    for lines in gb_list:
+        line = lines.split(', ')
+        gb_dict[line[0]] = line[1:]
+
+    return gb_dict
 
 
 def get_purchase_list():
