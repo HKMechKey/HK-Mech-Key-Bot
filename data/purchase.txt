@@ -1,4 +1,4 @@
-Grapebuy List (2021-08-16, 14:40:11 ver.)
+Grapebuy List (2021-08-22, 19:50:25 ver.)
 
 1. Black Lemo
 2. TGR Jane CE
@@ -44,7 +44,6 @@ Grapebuy List (2021-08-16, 14:40:11 ver.)
 42. Kohaku 65
 43. GMK honor Dark base kit+Light base kit+Dark addon+light addon
 44. black angle 80
-45. Hakko FR-301
-46. ROG Zoom Cat7 lancable
-47. tkl pcb
-48. Tenga flip zero
+45. ROG Zoom Cat7 lancable
+46. tkl pcb
+47. Tenga flip zero
