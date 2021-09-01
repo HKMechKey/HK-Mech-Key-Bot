@@ -16,7 +16,7 @@ def mm(update, context):
 
 
 def bokkey(update, context):
-    send_text(update, context, 'Bokkey幫到你 @Hinsonli')
+    send_text(update, context, '想搵人代組/代Lube/代Mod你隻鍵盤？按此連結展開激情對話：\n\nbokkey.me')
 
 
 def frusta(update, context):
@@ -66,10 +66,10 @@ def studio(update, context):
         context,
         'HJ2Q Studio (Thic Thock X Bokkey) 現已開放！\n\n' +
         '地址：新界火炭華樂工業中心E座12樓4室\n' +
-        '開放日子：27/8, 28/8\n' +
+        '開放日子：逢星期五及六\n' +
         '開放時間：13:00 - 19:00\n\n' +
-        '交流會：28/8\n' +
-        '展示鍵盤：\n' + '- Geonworks Frog TKL\n' + '- GOK 7V\n' + '- AKI-S\n\n' +
+        '交流會：TBC\n\n' +
+        #'展示鍵盤：\n' + '- Geonworks Frog TKL\n' + '- GOK 7V\n' + '- AKI-S\n\n' +
         #'潤滑工作坊：10/7(SAT) | 14:00 - 17:00 | HKD400\n\n' +
         '詳情請留意 https://t.me/hj2qnews'
     )

@@ -1,17 +1,17 @@
+from telegram import ForceReply
+
 from datetime import datetime, timedelta
+from secrets import randbelow
 from functools import reduce
 
 from decouple import config
 
+from aws import *
 import constant
 
 
 def is_mukong(update):
     return update.message.from_user.id == constant.mukong_id
-
-
-def can_play_quote():
-    return constant.status
 
 
 def is_correct_group(update, context):
@@ -62,9 +62,8 @@ def update_header(CV, header):
     return new_header + CV[index + 6:]
 
 
-def get_quote():
-    db = open('data/quotes.txt', 'r')
-    return db.read().split('\n')
+def get_quote(filename):
+    return download_from_aws(filename)
 
 
 def get_gb():
@@ -80,9 +79,7 @@ def get_gb():
 
 
 def get_purchase_list():
-    f = open("data/purchase.txt", "r")
-    purchase_list = update_header(f.read(), header='Grapebuy List')
-    return purchase_list
+    return update_header(download_from_aws('purchase.txt'), header='Grapebuy List')
 
 
 def get_time(month=False, value=7):
@@ -121,9 +118,7 @@ def add_purchase_item(update, context):
         new_num = int(items[-1][:items[-1].find('.')]) + 1
         new_list = update_header(purchase_list + '\n' + str(new_num) + '. ' + new_title, header='Grapebuy List')
         context.bot.sendMessage(chat_id=chat_id, text=new_list)
-        f = open("data/purchase.txt", 'w')
-        f.write(new_list)
-        f.close()
+        upload_to_aws('purchase.txt', new_list)
 
 
 def delete_item(update, context):
@@ -146,6 +141,45 @@ def delete_item(update, context):
             items.pop(0)
             new_list = update_header(new_list + reduce(lambda a,b: a + '\n' + b, items), header='Grapebuy List')
             context.bot.sendMessage(chat_id=chat_id, text=new_list)
-            f = open("data/purchase.txt", 'w')
-            f.write(new_list)
-            f.close()
+            upload_to_aws('purchase.txt', new_list)
+
+
+def send_quote(update, context, isMukong):
+    if not is_correct_group(update, context):
+        send_text(update, context, '喂，鍵谷以外嘅地方唔準用我')
+    else:
+        filename = 'quotes.txt' if isMukong else 'grape.txt'
+        name = '牙空' if isMukong else '提子'
+
+        db = get_quote(filename).split('\n')
+        send_text(update, context, name + '：「' + db[randbelow(len(db))] + '」')
+
+
+def update_quote(update, context, is_mukong, new_quote):
+    filename = 'quotes.txt' if is_mukong else 'grape.txt'
+    name = '牙空' if is_mukong else '提子'
+
+    new_quote = get_quote(filename) + '\n' + new_quote
+
+    upload_to_aws(filename, new_quote)
+    send_text(update, context, name + '語錄已更新')
+    
+    constant.can_update_quote = False
+
+
+def ask_user_new_quote(update, context):
+    update.message.reply_text(
+        text = '要加乜野quote？',
+        reply_markup=ForceReply(selective=True)
+    )
+
+
+def handle_add_quote(update, context, is_mukong):
+    constant.can_update_quote = True
+    constant.is_add_mukong_quote = is_mukong
+    ask_user_new_quote(update, context)
+    
+
+def handle_replied_quote(update, context):
+    if constant.can_update_quote:
+        update_quote(update, context, constant.is_add_mukong_quote, update.message.text)

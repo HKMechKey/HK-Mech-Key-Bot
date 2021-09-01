@@ -1,15 +1,20 @@
 from telegram.ext import Filters, Updater, CommandHandler, MessageHandler
 from decouple import config
+import os
 
 from utils import *
 from media import *
 from text import *
 from quotes import *
 from gb import *
+from aws import *
 
 
 def main():
-    updater = Updater(config('TOKEN'))
+    TOKEN = config('TOKEN')
+    PORT = int(os.environ.get('PORT', 5000))
+    
+    updater = Updater(TOKEN, use_context=True)
     dp = updater.dispatcher
 
     dp.add_handler(CommandHandler('akis', akis))
@@ -21,6 +26,7 @@ def main():
     dp.add_handler(CommandHandler('stock', stock))
     dp.add_handler(CommandHandler('profile', profile))
     dp.add_handler(CommandHandler('HJ2QNews', HJ2QInfo))
+    dp.add_handler(CommandHandler('bokkey', bokkey))
     dp.add_handler(CommandHandler('scratch', scratch))
     dp.add_handler(CommandHandler('bid', bid))
     dp.add_handler(CommandHandler('dllmch', dllmch))
@@ -45,13 +51,18 @@ def main():
     dp.add_handler(CommandHandler('keebtierlist', HJ2QTierList))
     dp.add_handler(CommandHandler('urgay', gay))
     dp.add_handler(CommandHandler('grapebook', grapebook))
-    dp.add_handler(CommandHandler('quote', quote))
-    dp.add_handler(CommandHandler('addquote', update_quote))
+    dp.add_handler(CommandHandler('mukongquote', mukong_quote))
+    dp.add_handler(CommandHandler('addmukongquote', update_mukong_quote))
+    dp.add_handler(CommandHandler('grapequote', grape_quote))
+    dp.add_handler(CommandHandler('addgrapequote', update_grape_quote))
     dp.add_handler(CommandHandler('code', sourcecode))
 
     dp.add_handler(MessageHandler(Filters.status_update.new_chat_members, new_member))
+    dp.add_handler(MessageHandler(Filters.text, handle_replied_quote))
 
-    updater.start_polling()
+    updater.start_webhook(listen="0.0.0.0", port=int(PORT), url_path=TOKEN)
+    updater.bot.setWebhook('https://hkmk-telegram-bot.herokuapp.com/' + TOKEN)
+
     updater.idle()
 
 
