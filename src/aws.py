@@ -1,5 +1,5 @@
-from decouple import config
 import boto3
+from decouple import config
 
 
 def upload_to_aws(dest, val):
@@ -24,4 +24,3 @@ def download_from_aws(dest):
 	obj = s3.Object(BUCKET_NAME, dest)
 
 	return obj.get()['Body'].read().decode('utf-8')
-
